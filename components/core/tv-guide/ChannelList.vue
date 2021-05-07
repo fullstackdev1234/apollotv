@@ -43,7 +43,8 @@
                         <div class="channel__programme__section">
                             <div class="programme__header">
                                 <div class="header__time" v-for="(n, index) in hoursList" :key="index">
-                                    {{n.date}} {{n.time}}:00 - {{n.time + 1}}:00
+                                    <p v-if="currentDate == n.date.substr(n.date.length - 1) && currentTime == n.time" class="current-time">{{n.date}} {{n.time}}:00 - {{n.time + 1}}:00</p>
+                                    <p v-else>{{n.date}} {{n.time}}:00 - {{n.time + 1}}:00</p>
                                 </div>
                             </div>
 
@@ -121,9 +122,14 @@ export default {
             channelOptions: [],
             selected: '-1',
             prevPosition: 0,
+            currentDate: '',
+            currentTime: 0
         }
     },
     mounted() {
+        let d = new Date();
+        this.currentDate = d.getDate();
+        this.currentTime = d.getHours();
         // this.$programmeRows = document.querySelectorAll('.programme__timing__section .programme__row')
         // console.log(this.$programmeRows);
         // this.onViewUpdated()

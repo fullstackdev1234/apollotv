@@ -57,14 +57,14 @@
                         </div>
                     </div>
 
-                    <div class="row align-items-center justify-content-between mb-3">
+                    <!-- <div class="row align-items-center justify-content-between mb-3">
                         <div class="col-md-8">
                             <span class="text-light font-size-13">Reseller</span>
                             <p class="mb-0">
                                 <a href="https://webplay.tv4.live/" >WebPlay</a>
                             </p>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row align-items-center justify-content-between mb-3">
                         <div class="col-md-8">
@@ -107,12 +107,12 @@
                     <br>
 
                     <h5 class="mb-3 pb-3 a-border">
-                        Product Info
+                        Web Player Version
                     </h5>
 
                     <div class="row align-items-center justify-content-between mb-3">
                         <div class="col-md-8">
-                            <span class="text-light font-size-13">Version</span>
+                            <!-- <span class="text-light font-size-13">Version</span> -->
                             <p class="mb-0">
                                 1.0.0
                             </p>

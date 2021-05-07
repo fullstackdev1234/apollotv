@@ -14,10 +14,13 @@
     <div class="video-js-responsive-container vjs-hd">
         <vplayer ref="videoPlayer" class="vjs-default-skin vjs-big-play-centered vjs-layout-large" :options="playerOptions" @play="onPlayerPlay($event)" @ready="onPlayerReady($event)" />
     </div>
+    <br />
+    <br />
+    <br />
     <!-- <div class="play-button">
         <i class="fa fa-play"></i>
     </div> -->
-    <InfoVideo v-if="infoData" :data="infoData" />
+    <!-- <InfoVideo v-if="infoData" :data="infoData" /> -->
 </div>
 </template>
 

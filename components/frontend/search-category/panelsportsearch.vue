@@ -216,6 +216,20 @@ export default {
                 }
             })
         },
+        mkvDetected() {
+            this.$confirm({
+                message: `This type is not supported in our web player. Could you download this movie?`,
+                button: {
+                    no: 'No',
+                    yes: 'Yes'
+                },
+                callback: confirm => {
+                    if (confirm) {
+                        console.log("Yes button was clicked!");
+                    }
+                }
+            })
+        }
     },
     fetchOnServer: false
 }

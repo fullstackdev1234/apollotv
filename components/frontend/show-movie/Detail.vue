@@ -1,37 +1,20 @@
 <template>
-<section class="movie-detail container-fluid">
+<section class="container-fluid">
     <b-row>
-        <b-col lg="12" class="col-lg-12">
+        <b-col lg="12">
             <div class="trending-info g-border">
                 <div class="d-flex">
-                    <h1 class="trending-text mt-0">{{ infoData.title }}</h1>
-                    <img :src="require(`../../../assets/images/${imgSrc}.png`)" class="detail-bookmark" @click="manage_favorite(infoData.imdb_id)">
+                    <h1 class="trending-text mt-0">{{ detailData.title }}</h1>
+                    <img :src="require(`../../../assets/images/${imgSrc}.png`)" class="detail-bookmark" @click="manage_favorite(detailData.imdb_id)">
                 </div>
+                <!-- <h1 class="trending-text mt-0">{{ detailData.title }}</h1> -->
                 <div class="d-flex align-items-center text-white text-detail">
-                    <span class="">{{ infoData.date }}</span>
-                    <span class="ml-3">{{ infoData.duration }}</span>
+                    <!-- <span class="ml-3">{{ detailData.seasons }} Seasons</span> -->
+                    <span class="trending-year">{{ detailData.year }}</span>
                 </div>
-                <div>
-                    <span class="trending-dec">{{ infoData.desc }}</span>
-                </div>
-                <div class="action-group">
-                    <div class="action-download action-items">
-                        <i class="fa fa-download"></i>
-                        <p>Download</p>
-                    </div>
-                    <div class="action-mylist action-items">
-                        <i class="fa fa-bookmark"></i>
-                        <p>My List</p>
-                    </div>
-                    <div class="action-trailer action-items">
-                        <i class="fa fa-film"></i>
-                        <p>Trailer</p>
-                    </div>
-                    <div class="action-share action-items">
-                        <i class="fa fa-share"></i>
-                        <p>Share</p>
-                    </div>
-                </div>
+                <p class="trending-dec w-100 mb-0">{{ detailData.desc }}</p>
+                <br />
+                <br />
             </div>
         </b-col>
     </b-row>
@@ -40,30 +23,30 @@
 
 <script>
 export default {
-    name: 'InfoVideo',
+    name: 'Detail',
     components: {},
+    mounted() {
+        if (this.detailData.is_favorite) {
+            this.imgSrc = 'bookmark-true'
+        } else {
+            this.imgSrc = 'bookmark-false'
+        }
+    },
     props: {
         data: {
             type: Object,
             required: false
         }
     },
-    mounted () {
-        if (this.infoData.is_favorite) {
-            this.imgSrc = 'bookmark-true'
-        } else {
-            this.imgSrc = 'bookmark-false'
-        }
-    },
     data() {
         return {
-            infoData: this.data,
+            detailData: this.data,
             imgSrc: 'bookmark-false'
         }
     },
     methods: {
         manage_favorite(id) {
-            if (this.infoData.is_favorite) {
+            if (this.detailData.is_favorite) {
                 this.remove_favorite(id)
             } else {
                 this.add_favorite(id)
@@ -90,7 +73,6 @@ export default {
                                         text: 'Adding favorite success'
                                     });
                                     this.imgSrc = 'bookmark-true'
-                                    this.infoData.is_favorite = true
                                 } else {
                                     this.$notify({
                                         group: 'all',
@@ -124,7 +106,6 @@ export default {
                                     text: 'Removing favorite success'
                                 });
                                 this.imgSrc = 'bookmark-false'
-                                this.infoData.is_favorite = false
                             } else {
                                 this.$notify({
                                     group: 'all',
@@ -138,20 +119,6 @@ export default {
                 }
             })
         },
-        mkvDetected() {
-            this.$confirm({
-                message: `This type is not supported in our web player. Could you download this movie?`,
-                button: {
-                    no: 'No',
-                    yes: 'Yes'
-                },
-                callback: confirm => {
-                    if (confirm) {
-                        console.log("Yes button was clicked!");
-                    }
-                }
-            })
-        }
     }
 }
 </script>
