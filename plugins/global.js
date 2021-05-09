@@ -67,3 +67,9 @@ Vue.prototype.getVideoType = (videoUrl) => {
   else type = "video/webm";
   return type;
 }
+
+Vue.prototype.isMKV = (videoUrl) => {
+  if(videoUrl.includes(".mkv")) 
+    return true;
+  return false;
+}

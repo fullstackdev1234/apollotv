@@ -10,9 +10,13 @@
     </div>
 </div>
 <p v-else-if="$fetchState.error">Error while fetching tvshows</p>
-<div v-else>
-    <div class="video-js-responsive-container vjs-hd">
-        <vplayer ref="videoPlayer" class="vjs-default-skin vjs-big-play-centered vjs-layout-large" :options="playerOptions" @play="onPlayerPlay($event)" @ready="onPlayerReady($event)" />
+<div v-else class="video-detail">
+    <div v-if="!this.isMKV" class="video-js-responsive-container vjs-hd">
+        <vplayer ref="videoPlayer" class="vjs-default-skin vjs-big-play-centered" :options="playerOptions" @play="onPlayerPlay($event)" @ready="onPlayerReady($event)" />
+    </div>
+    <div v-else class="video-js-responsive-container vjs-hd suggest-div">
+        <h3 class="suggest-text">Web player doesn't support mkv files, please download it and open with your player</h3>
+        <a :href="this.playSrc" class="btn btn-primary download-btn">Download</a>
     </div>
     <br />
     <br />
@@ -55,7 +59,8 @@ export default {
                     timeDivider: true,
                     durationDisplay: true
                 }
-            }
+            },
+            isMKV: false,
         }
     },
     computed: {
@@ -71,6 +76,7 @@ export default {
         let item = await this.$store.dispatch("loadMovieItem", data);
 
         this.playSrc = await this.$store.dispatch("loadMovieSrc", data);
+        this.isMKV = Vue.prototype.isMKV(this.playSrc);
         
         this.infoData.poster = item.meta.poster;
         this.infoData.title = item.meta.title;

@@ -835,3 +835,20 @@ li.slide-item .block-images .img-box img.img-fluid {
 .current-time {
     background-color: #E91C48;
 }
+
+.video-detail {
+    height: 100vh;
+    background: var(--iq-body-bg);
+}
+
+.suggest-div {
+    text-align: center;
+}
+
+.suggest-text {
+    margin-top: 100px;
+}
+
+.download-btn {
+    margin-top: 50px;
+}
